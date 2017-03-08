@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Name, Welcome to Batcave!</h2>
+<input type="button" id="getdatabtn" name="getdatabtn" value="Get Data" />
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#getdatabtn').on('click', function (event) {
+                $.get('/Home/GetData')
+                    .success(getDataCompleted)
+                    .error(getDataFailed);
+
+                function getDataCompleted(data) {
+                    console.log(data);
+                }
+
+                function getDataFailed(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+}
